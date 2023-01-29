@@ -1,21 +1,37 @@
-on: 
-    schedule: 
-        - cron : '0 8 * * *' # your favourable timing
+# This is a basic workflow to help you get started with Actions
 
-jobs : 
-  build :
-    run-on : ubuntu-latest 
+name: fetch from GITHUB ACTION 
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  schedule : 
+  - cron : '0 8 * * *'
 
-  steps : 
-    -name : Using LC-Collectinator
-     uses : ME-ON1/Leetcode-SyncInAction
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Using LC-Collectinator
+        uses : ME-ON1/Leetcode-SyncInAction@1.1.1
         with :
           cookieVal : ${{ secrets.COOKIE_SECRET }} # secrets.cookieVal coming from repository secret    
-          solution_location : path/to/directory  # if any , default is root ./
+          solution_location : ./  # if any , default is root '.'
       
     # dependency, to write newly created files to the root directory of the repository.  
 
-    - name: pushing the changes!!
-    uses: stefanzweifel/git-auto-commit-action@v4
-    with:
-      commit_message: Adding new LC solutions # or anything you want to add.
+      - name: pushing the changes!!
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: Adding new LC solutions # or anything you want to add.

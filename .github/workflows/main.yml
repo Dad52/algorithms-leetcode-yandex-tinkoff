@@ -1,0 +1,21 @@
+on: 
+    schedule: 
+        - cron : '0 8 * * *' # your favourable timing
+
+jobs : 
+  build :
+    run-on : ubuntu-latest 
+
+  steps : 
+    -name : Using LC-Collectinator
+     uses : ME-ON1/Leetcode-SyncInAction
+        with :
+          cookieVal : ${{ secrets.COOKIE_SECRET }} # secrets.cookieVal coming from repository secret    
+          solution_location : path/to/directory  # if any , default is root ./
+      
+    # dependency, to write newly created files to the root directory of the repository.  
+
+    - name: pushing the changes!!
+    uses: stefanzweifel/git-auto-commit-action@v4
+    with:
+      commit_message: Adding new LC solutions # or anything you want to add.

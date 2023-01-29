@@ -14,5 +14,5 @@ jobs:
       - name: Sync LeetCode Today Problem
         uses: spencercjh/sync-leetcode-today-problem@0.4.1
         with:
-          language: Kotlin
+          language: Java
           need_test: True

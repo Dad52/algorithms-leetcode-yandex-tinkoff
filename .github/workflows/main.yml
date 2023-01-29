@@ -5,7 +5,7 @@ name: fetch from GITHUB ACTION
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   schedule : 
-  - cron : '0 8 * * *'
+  - cron : '0 */12 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

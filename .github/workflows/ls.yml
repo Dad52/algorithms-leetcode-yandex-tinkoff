@@ -1,0 +1,18 @@
+name: Sync LeetCode Today Problem
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs at 00:01 UTC+8
+    - cron: "1 16 * * *"
+
+jobs:
+  sync_leetcode_today_record_job:
+    name: sync leetcode today problem job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync LeetCode Today Problem
+        uses: spencercjh/sync-leetcode-today-problem@0.4.1
+        with:
+          language: Kotlin
+          need_test: True

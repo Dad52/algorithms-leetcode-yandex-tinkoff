@@ -1,4 +1,4 @@
-name: fetching every 12 hours new lc solutions
+name: fetching lc solutions every 12 hours 
 
 on:
 
